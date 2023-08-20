@@ -111,7 +111,7 @@ img {
     cursor: pointer;
     transition: collor .3s;
 }
-
+/* adding darkmode */
 /* ============== variables Dark theme ==============*/
 body.dark-theme{
     --first-color: hsl(14, 80%, 50%);
