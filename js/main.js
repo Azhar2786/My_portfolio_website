@@ -40,3 +40,33 @@ const navMenu = document.getElementById('nav-menu'),
                                  : header.classList.remove('shadow-header')
             }
             window.addEventListener('scroll', shadowHeader)
+
+            
+      /* =================== Email js ==================*/
+
+      const contactForm = document.getElementById('contact-form'),
+      contactMessage = document.getElementById('contact-message')
+
+const sendEmail = (e) =>{
+  e.preventDefault()
+
+  // serviceId - templateId - #form - publickey
+  emailjs.sendForm('','','#contact-form','').then(() =>{
+    //show sent message
+    contactMessage.textContent = 'Message sent succesfully ✅'
+
+    //Remove message after 5 second
+    setTimeout(() =>{
+      contactMessage.textContent = ''
+    }, 3000)
+
+    // clear input fields
+    contactForm.reset()
+  
+  }, () =>{
+    //show error messsage
+    contactMessage.textContent = 'Message not sent (service error) ❌'
+  })
+
+}
+contactForm.addEventListener('submit',sendEmail)
