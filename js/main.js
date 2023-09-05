@@ -102,3 +102,37 @@ contactForm.addEventListener('submit',sendEmail)
     })
   }
   window.addEventListener('scroll',scrollActive)
+
+
+  /* ===================== Dark Light theme ====================*/
+  const themeButton = document.getElementById('theme-button')
+  const darkTheme = 'dark-theme'
+  const iconTheme = 'ri-sun-line'
+
+  //preeviously seected topic (if user selected)
+  const selectedTheme = localStorage.getItem('selected-theme')
+  const selectedIcon = localStorage.getItem('selected-icon')
+
+  //we obtain the current theme that the interface has by validiiating the dark class
+  const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
+  const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moon-line' : 'ri-sun-line'
+
+  // we validate if the user previously chose a topic
+  if(selectedTheme){
+    //if the validation is fulfiled , we ask what he issue was to know if activate or deactivated
+    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+    themeButton.classList[selectedIcon === 'ri-moon-line' ? 'add' : 'remove'](iconTheme)
+
+  }
+
+  // Activate / deactivate the theme manually with button
+  themeButton.addEventListener('click', () => {
+    // Add or remove the dark / icon theme
+    document.body.classList.toggle(darkTheme)
+    themeButton.classList.toggle(iconTheme)
+    //we save the theme and current icon that user chose
+    localStorage.setItem('selected-theme', getCurrentIcon())
+    localStorage.setItem('selected-icon', getCurrentIcon())
+
+  })
+  
